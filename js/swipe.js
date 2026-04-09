@@ -1,5 +1,5 @@
 import { candidates } from './data.js';
-import { createCardHTML, updateCounter, showResults, hideResults } from './ui.js';
+import { createCardHTML, updateCounter, showResults, hideResults, showEmptyState } from './ui.js';
 
 let currentIndex = 0;
 let liked = [];
@@ -10,7 +10,7 @@ let dragging = false;
 export function renderCard(container) {
     if (!container) return;
     if (currentIndex >= candidates.length) {
-        container.innerHTML = '<div style="text-align:center; padding:40px;">🏁 Все кандидаты просмотрены</div>';
+        showEmptyState(container);
         showResults(liked, candidates.length);
         return;
     }
@@ -35,13 +35,16 @@ function onStart(e) {
     startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
     if (currentCard) currentCard.style.transition = 'none';
 }
+
 function onMove(e) {
     if (!dragging || !currentCard) return;
+    e.preventDefault();
     const x = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
     const diff = x - startX;
-    currentCard.style.transform = `translateX(${diff}px) rotate(${diff*0.05}deg)`;
-    currentCard.style.opacity = 1 - Math.abs(diff)/500;
+    currentCard.style.transform = `translateX(${diff}px) rotate(${diff * 0.05}deg)`;
+    currentCard.style.opacity = 1 - Math.abs(diff) / 500;
 }
+
 function onEnd(e) {
     if (!dragging || !currentCard) { dragging = false; return; }
     dragging = false;
@@ -53,20 +56,29 @@ function onEnd(e) {
         currentCard.style.transition = '0.2s';
         currentCard.style.transform = 'translateX(0) rotate(0)';
         currentCard.style.opacity = '1';
-        setTimeout(() => { if(currentCard) currentCard.style.transition = ''; }, 200);
+        setTimeout(() => { if (currentCard) currentCard.style.transition = ''; }, 200);
     }
 }
+
 function like() {
     if (!currentCard) return;
     liked.push(candidates[currentIndex]);
     currentCard.classList.add('swipe-right');
-    setTimeout(() => { currentIndex++; renderCard(document.getElementById('cardsStack')); }, 200);
+    setTimeout(() => { 
+        currentIndex++; 
+        renderCard(document.getElementById('cardsStack')); 
+    }, 200);
 }
+
 function dislike() {
     if (!currentCard) return;
     currentCard.classList.add('swipe-left');
-    setTimeout(() => { currentIndex++; renderCard(document.getElementById('cardsStack')); }, 200);
+    setTimeout(() => { 
+        currentIndex++; 
+        renderCard(document.getElementById('cardsStack')); 
+    }, 200);
 }
+
 export function reset() {
     currentIndex = 0;
     liked = [];
@@ -74,7 +86,8 @@ export function reset() {
     renderCard(document.getElementById('cardsStack'));
     updateCounter(candidates.length, 0);
     const stats = document.getElementById('swipeStats');
-    if (stats) stats.innerHTML = `👀 Осталось: <span id="cardsLeft">${candidates.length}</span>`;
+    if (stats) stats.innerHTML = `👀 Осталось кандидатов: <span id="cardsLeft">${candidates.length}</span>`;
 }
+
 export function likeCurrent() { if (currentCard) like(); }
 export function dislikeCurrent() { if (currentCard) dislike(); }

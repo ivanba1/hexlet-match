@@ -3,27 +3,58 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --card-bg: #ffffff;
+    --nav-bg: rgba(255, 255, 255, 0.92);
+    --swipe-card-bg: #ffffff;
+}
+
+body.dark {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --card-bg: #1e293b;
+    --nav-bg: rgba(15, 23, 42, 0.92);
+    --swipe-card-bg: #1e293b;
+}
+
 body {
     font-family: 'Inter', sans-serif;
-    background: #ffffff;
-    color: #111827;
+    background: var(--bg-primary);
+    color: var(--text-primary);
     line-height: 1.6;
     font-size: 18px;
     scroll-behavior: smooth;
+    transition: background 0.3s, color 0.3s;
 }
+
 .container {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 24px;
 }
+
+/* Навигация */
 .navbar {
     position: sticky;
     top: 0;
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
+    background: var(--nav-bg);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color);
     z-index: 100;
     padding: 16px 0;
 }
+
 .nav-inner {
     display: flex;
     justify-content: space-between;
@@ -31,6 +62,7 @@ body {
     flex-wrap: wrap;
     gap: 16px;
 }
+
 .logo {
     font-weight: 800;
     font-size: 1.8rem;
@@ -39,16 +71,23 @@ body {
     -webkit-background-clip: text;
     color: transparent;
 }
+
 .nav-links {
     display: flex;
     gap: 28px;
+    flex-wrap: wrap;
 }
+
 .nav-links a {
     text-decoration: none;
     font-weight: 600;
-    color: #1f2937;
+    color: var(--text-primary);
+    transition: color 0.2s;
 }
+
 .nav-links a:hover { color: #2563eb; }
+
+/* Кнопки */
 .btn {
     display: inline-block;
     background: #2563eb;
@@ -59,35 +98,58 @@ body {
     text-decoration: none;
     border: none;
     cursor: pointer;
+    transition: background 0.2s;
 }
+
 .btn-outline {
     background: transparent;
     border: 2px solid #2563eb;
     color: #2563eb;
 }
+
+.btn-outline.dark-mode {
+    color: #2563eb;
+}
+
 .btn:hover { background: #1d4ed8; }
-section { padding: 80px 0; border-bottom: 1px solid #e5e7eb; }
+.btn-outline:hover { background: #2563eb10; }
+
+/* Секции */
+section { padding: 80px 0; border-bottom: 1px solid var(--border-color); }
 @media (max-width: 768px) { section { padding: 48px 0; } }
+
 .section-title {
     font-size: 2.4rem;
     font-weight: 800;
     margin-bottom: 2rem;
     border-left: 6px solid #2563eb;
     padding-left: 20px;
+    color: var(--text-primary);
 }
+
 .grid-2 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 32px;
 }
+
 .card {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 32px;
     padding: 28px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    border: 1px solid #eef2ff;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s;
+    color: var(--text-primary);
 }
+
+.card p {
+    color: var(--text-secondary);
+}
+
 .card:hover { transform: translateY(-4px); }
+.card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
+
 .badge {
     background: #2563eb10;
     color: #1e40af;
@@ -97,6 +159,13 @@ section { padding: 80px 0; border-bottom: 1px solid #e5e7eb; }
     font-weight: 700;
     display: inline-block;
 }
+
+body.dark .badge {
+    background: #2563eb20;
+    color: #60a5fa;
+}
+
+/* Конкуренты */
 .competitor-grid {
     display: flex;
     flex-wrap: wrap;
@@ -104,19 +173,27 @@ section { padding: 80px 0; border-bottom: 1px solid #e5e7eb; }
     margin-top: 24px;
 }
 .competitor-item {
-    background: #f9fafb;
+    background: var(--card-bg);
     border-radius: 24px;
     padding: 20px;
     flex: 1;
     min-width: 180px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
 }
+
+/* Ценностное предложение */
 .value-prop {
-    background: #f0f9ff;
+    background: var(--bg-secondary);
     border-radius: 32px;
     padding: 40px;
     border-left: 8px solid #2563eb;
 }
+.value-prop p {
+    color: var(--text-primary);
+}
+
+/* MVP списки */
 .mvp-list {
     list-style: none;
     margin-top: 20px;
@@ -125,6 +202,7 @@ section { padding: 80px 0; border-bottom: 1px solid #e5e7eb; }
     padding-left: 28px;
     position: relative;
     margin-bottom: 12px;
+    color: var(--text-secondary);
 }
 .mvp-list li::before {
     content: "✓";
@@ -132,6 +210,8 @@ section { padding: 80px 0; border-bottom: 1px solid #e5e7eb; }
     position: absolute;
     left: 0;
 }
+
+/* Метрики */
 .metric-row {
     display: flex;
     flex-wrap: wrap;
@@ -140,18 +220,87 @@ section { padding: 80px 0; border-bottom: 1px solid #e5e7eb; }
     margin-top: 32px;
 }
 .metric-card {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 32px;
     padding: 28px;
     text-align: center;
     flex: 1;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
 }
 .metric-number {
     font-size: 3rem;
     font-weight: 800;
     color: #2563eb;
 }
+
+/* CJM */
+.cjm-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 40px 0;
+}
+.cjm-step {
+    background: var(--card-bg);
+    border-radius: 28px;
+    padding: 24px;
+    flex: 1;
+    min-width: 180px;
+    border-left: 6px solid #2563eb;
+    color: var(--text-primary);
+}
+.cjm-step strong { font-size: 1.2rem; display: block; margin-bottom: 10px; color: var(--text-primary); }
+
+/* Команда */
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px;
+    margin: 40px 0;
+}
+.team-card {
+    background: var(--card-bg);
+    border-radius: 32px;
+    padding: 32px 24px;
+    text-align: center;
+    flex: 1;
+    min-width: 220px;
+    max-width: 280px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s;
+}
+.team-card:hover { transform: translateY(-6px); }
+.team-avatar { font-size: 4rem; margin-bottom: 16px; }
+.team-card h3 { font-size: 1.4rem; margin-bottom: 8px; color: var(--text-primary); }
+.team-card p { color: var(--text-secondary); }
+.team-tg {
+    display: inline-block;
+    background: #eef2ff;
+    color: #1e40af;
+    padding: 8px 20px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.team-tg:hover { background: #2563eb; color: white; }
+.contact-email-block {
+    text-align: center;
+    margin-top: 40px;
+    padding: 24px;
+    background: var(--bg-secondary);
+    border-radius: 28px;
+}
+.email-link {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+/* ===== СВАЙП КАРТОЧКИ (исправлено для тёмной темы) ===== */
 .swipe-container {
     max-width: 500px;
     margin: 0 auto;
@@ -168,18 +317,24 @@ section { padding: 80px 0; border-bottom: 1px solid #e5e7eb; }
     position: absolute;
     width: 100%;
     max-width: 420px;
-    background: white;
+    background: var(--swipe-card-bg);
     border-radius: 32px;
     box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2);
     padding: 28px;
     cursor: grab;
-    border: 1px solid #eef2ff;
+    border: 1px solid var(--border-color);
     z-index: 10;
+    color: var(--text-primary);
 }
 .swipe-card:active { cursor: grabbing; }
 .swipe-card.swipe-right { transform: translateX(150%) rotate(15deg); opacity: 0; transition: 0.3s; }
 .swipe-card.swipe-left { transform: translateX(-150%) rotate(-15deg); opacity: 0; transition: 0.3s; }
-.candidate-name { font-size: 1.8rem; font-weight: 800; }
+
+.candidate-name { 
+    font-size: 1.8rem; 
+    font-weight: 800; 
+    color: var(--text-primary);
+}
 .candidate-stack {
     display: inline-block;
     background: #eef2ff;
@@ -187,12 +342,53 @@ section { padding: 80px 0; border-bottom: 1px solid #e5e7eb; }
     border-radius: 40px;
     font-size: 0.85rem;
     margin: 12px 0;
+    color: #1e40af;
 }
-.match-percent { font-size: 2rem; font-weight: 800; color: #2563eb; }
-.culture-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+body.dark .candidate-stack {
+    background: #334155;
+    color: #94a3b8;
+}
+.match-percent { 
+    font-size: 2rem; 
+    font-weight: 800; 
+    color: #2563eb;
+}
+.culture-badge { 
+    display: inline-block; 
+    padding: 4px 12px; 
+    border-radius: 20px; 
+    font-size: 0.8rem; 
+    font-weight: 600; 
+}
 .culture-high { background: #dcfce7; color: #15803d; }
 .culture-medium { background: #fef9c3; color: #854d0e; }
 .culture-low { background: #fee2e2; color: #b91c1c; }
+
+body.dark .culture-high { background: #14532d; color: #86efac; }
+body.dark .culture-medium { background: #713f12; color: #fde047; }
+body.dark .culture-low { background: #7f1d1d; color: #fca5a5; }
+
+.swipe-card p {
+    color: var(--text-secondary);
+    margin: 12px 0;
+    font-size: 0.9rem;
+}
+
+.swipe-card .info-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+    color: var(--text-secondary);
+}
+
+.swipe-card .skills-block {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 12px;
+    margin: 12px 0;
+}
+
 .swipe-buttons { display: flex; justify-content: center; gap: 32px; margin-top: 30px; }
 .swipe-btn {
     width: 70px; height: 70px; border-radius: 50%; border: none;
@@ -202,119 +398,368 @@ section { padding: 80px 0; border-bottom: 1px solid #e5e7eb; }
 .swipe-btn:hover { transform: scale(1.1); }
 .dislike-btn { background: #fee2e2; color: #ef4444; }
 .like-btn { background: #dcfce7; color: #22c55e; }
-.swipe-stats { text-align: center; margin-top: 20px; font-weight: 600; }
-.swipe-results { margin-top: 30px; padding: 20px; background: #f0f9ff; border-radius: 28px; text-align: center; }
-.footer { text-align: center; padding: 32px 0; background: #f8fafc; border-top: 1px solid #e5e7eb; }
+
+body.dark .dislike-btn { background: #450a0a; color: #f87171; }
+body.dark .like-btn { background: #14532d; color: #4ade80; }
+
+.swipe-stats { text-align: center; margin-top: 20px; font-weight: 600; color: var(--text-secondary); }
+.swipe-results { 
+    margin-top: 30px; 
+    padding: 20px; 
+    background: var(--bg-secondary); 
+    border-radius: 28px; 
+    text-align: center;
+    color: var(--text-primary);
+}
+.swipe-results ul { list-style: none; padding: 0; margin: 16px 0; }
+.swipe-results li { 
+    padding: 10px; 
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+/* Тёмная тема переключатель */
+.theme-switch-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card-bg);
+    padding: 8px 16px;
+    border-radius: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+    border: 1px solid var(--border-color);
+}
+.theme-icon { color: var(--text-primary); }
+.theme-switch { position: relative; width: 50px; height: 24px; }
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; width: 18px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+}
+input:checked + .slider { background-color: #2563eb; }
+input:checked + .slider:before { transform: translateX(26px); }
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+
+/* Кнопки авторизации */
+.auth-buttons { display: flex; gap: 12px; }
+.btn-auth {
+    padding: 8px 20px;
+    border-radius: 40px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-weight: 600;
+}
+.btn-auth.btn-primary { background: #2563eb; color: white; border: none; }
+
+/* Счётчик пользователей */
+.user-counter {
+    background: linear-gradient(135deg, #2563eb10, #7c3aed10);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.counter-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.counter-text { color: var(--text-primary); }
+.counter-trend { color: #22c55e; font-weight: 600; }
+
+/* Модальные окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+}
+.modal-content {
+    background: var(--card-bg);
+    margin: 5% auto;
+    padding: 32px;
+    border-radius: 32px;
+    width: 90%;
+    max-width: 550px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    color: var(--text-primary);
+}
+.modal-close {
+    position: absolute;
+    right: 24px; top: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+.modal-close:hover { color: #ef4444; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-primary); }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+.modal-footer-text { text-align: center; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border-color); color: var(--text-secondary); }
+.modal-footer-text a { color: #2563eb; cursor: pointer; }
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #2563eb;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 60px;
+    z-index: 2001;
+    transition: transform 0.3s;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.error { background: #ef4444; }
+.toast.success { background: #22c55e; }
+
+.footer {
+    text-align: center;
+    padding: 32px 0;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
 @media (max-width: 768px) {
     body { font-size: 16px; }
     .section-title { font-size: 1.9rem; }
     .swipe-card { max-width: 320px; padding: 20px; }
-}/* ===== КОМАНДА (КОНТАКТЫ) ===== */
-.team-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 32px;
-    margin: 40px 0;
+    .nav-inner { flex-direction: column; }
+    .auth-buttons { order: 3; width: 100%; justify-content: center; }
+    .swipe-btn { width: 55px; height: 55px; font-size: 1.5rem; }
+}
+/* ===== ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ ТЁМНОЙ ТЕМЫ (КАРТОЧКИ) ===== */
+
+/* Общие стили для карточек в тёмной теме */
+body.dark .swipe-card {
+    background: #1e293b;
+    color: #f1f5f9;
 }
 
-.team-card {
-    background: #ffffff;
-    border-radius: 32px;
-    padding: 32px 24px;
-    text-align: center;
-    flex: 1;
-    min-width: 220px;
-    max-width: 280px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-    border: 1px solid #eef2ff;
-    transition: transform 0.2s, box-shadow 0.2s;
+/* Блок со скиллами */
+.swipe-card .skills-block {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 12px;
+    margin: 12px 0;
+    transition: background 0.3s;
 }
 
-.team-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
+body.dark .swipe-card .skills-block {
+    background: #0f172a;
 }
 
-.team-avatar {
-    font-size: 4rem;
-    margin-bottom: 16px;
+/* Текст внутри блока скиллов */
+.swipe-card .skills-block span,
+.swipe-card .skills-block div {
+    color: var(--text-primary);
 }
 
-.team-card h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #0f172a;
+body.dark .swipe-card .skills-block span,
+body.dark .swipe-card .skills-block div {
+    color: #e2e8f0;
 }
 
-.team-card p {
-    font-size: 0.9rem;
-    color: #4b5563;
-    margin-bottom: 16px;
-}
-
-.team-tg {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #eef2ff;
-    color: #1e40af;
-    padding: 8px 20px;
-    border-radius: 40px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: background 0.2s;
-}
-
-.team-tg:hover {
-    background: #2563eb;
-    color: white;
-}
-
-.tg-icon {
-    font-size: 1.1rem;
-}
-
-.contact-email-block {
-    text-align: center;
-    margin-top: 40px;
-    padding: 24px;
-    background: #f8fafc;
-    border-radius: 28px;
-}
-
-.contact-email-block p {
-    margin-bottom: 12px;
-    color: #4b5563;
-}
-
-.email-link {
-    font-size: 1.2rem;
-    font-weight: 600;
+/* Числа процентов */
+.swipe-card .skills-block strong {
     color: #2563eb;
-    text-decoration: none;
-    border-bottom: 2px solid #2563eb30;
-    transition: border-color 0.2s;
 }
 
-.email-link:hover {
-    border-bottom-color: #2563eb;
+body.dark .swipe-card .skills-block strong {
+    color: #60a5fa;
 }
 
-@media (max-width: 768px) {
-    .team-grid {
-        gap: 20px;
-    }
-    .team-card {
-        min-width: 180px;
-        padding: 24px 16px;
-    }
-    .team-avatar {
-        font-size: 3rem;
-    }
-    .team-card h3 {
-        font-size: 1.2rem;
-    }
+/* Информационная строка (опыт, GitHub, локация) */
+.swipe-card .info-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+    color: var(--text-secondary);
+}
+
+body.dark .swipe-card .info-row {
+    color: #94a3b8;
+}
+
+/* Текст "О себе" */
+.swipe-card p {
+    color: var(--text-secondary);
+    margin: 12px 0;
+    font-size: 0.9rem;
+}
+
+body.dark .swipe-card p {
+    color: #cbd5e1;
+}
+
+/* Подсказки (❌ Дизлайк / ❤️ Лайк) */
+.swipe-card div[style*="background: #fee2e2"],
+.swipe-card div[style*="background:#fee2e2"] {
+    background: #fee2e2 !important;
+    color: #b91c1c !important;
+}
+
+body.dark .swipe-card div[style*="background: #fee2e2"],
+body.dark .swipe-card div[style*="background:#fee2e2"] {
+    background: #450a0a !important;
+    color: #f87171 !important;
+}
+
+.swipe-card div[style*="background: #dcfce7"],
+.swipe-card div[style*="background:#dcfce7"] {
+    background: #dcfce7 !important;
+    color: #15803d !important;
+}
+
+body.dark .swipe-card div[style*="background: #dcfce7"],
+body.dark .swipe-card div[style*="background:#dcfce7"] {
+    background: #14532d !important;
+    color: #4ade80 !important;
+}
+
+/* Имя кандидата */
+body.dark .swipe-card .candidate-name {
+    color: #ffffff;
+}
+
+/* Процент совпадения */
+body.dark .swipe-card .match-percent {
+    color: #60a5fa;
+}
+
+/* Стек технологий */
+body.dark .swipe-card .candidate-stack {
+    background: #334155;
+    color: #94a3b8;
+}
+
+/* Бейджи culture fit */
+body.dark .culture-high {
+    background: #14532d;
+    color: #86efac;
+}
+
+body.dark .culture-medium {
+    background: #713f12;
+    color: #fde047;
+}
+
+body.dark .culture-low {
+    background: #7f1d1d;
+    color: #fca5a5;
+}/* Подсказки на карточке */
+.swipe-card .swipe-hint {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.swipe-card .hint-dislike {
+    background: #fee2e2;
+    padding: 6px 20px;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    color: #b91c1c;
+}
+
+.swipe-card .hint-like {
+    background: #dcfce7;
+    padding: 6px 20px;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    color: #15803d;
+}
+
+body.dark .swipe-card .hint-dislike {
+    background: #450a0a;
+    color: #f87171;
+}
+
+body.dark .swipe-card .hint-like {
+    background: #14532d;
+    color: #4ade80;
+}/* ===== ДЕМО СЕКЦИЯ (тёмная тема) ===== */
+#demo {
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    transition: background 0.3s;
+}
+
+body.dark #demo {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.demo-subtitle {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    color: #374151;
+    transition: color 0.3s;
+}
+
+body.dark .demo-subtitle {
+    color: #94a3b8;
+}
+
+/* Заголовок секции в тёмной теме */
+body.dark #demo .section-title {
+    color: #f1f5f9;
+}
+
+/* Контейнер свайпа */
+body.dark .swipe-container {
+    color: #f1f5f9;
+}
+
+/* Статистика свайпа */
+body.dark .swipe-stats {
+    color: #94a3b8;
+}
+
+/* Результаты свайпа */
+body.dark .swipe-results {
+    background: #1e293b;
+    color: #f1f5f9;
+}
+
+body.dark .swipe-results h3 {
+    color: #f1f5f9;
+}
+
+body.dark .swipe-results li {
+    color: #cbd5e1;
+    border-bottom-color: #334155;
 }

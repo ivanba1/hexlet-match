@@ -10,6 +10,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Переключатель темы -->
+    <div class="theme-switch-wrapper">
+        <span class="theme-icon">🌙</span>
+        <label class="theme-switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider round"></span>
+        </label>
+        <span class="theme-icon">☀️</span>
+    </div>
+
     <nav class="navbar">
         <div class="container nav-inner">
             <div class="logo">🧠 Хекслет‑match</div>
@@ -19,9 +29,26 @@
                 <a href="#demo">Демо</a>
                 <a href="#mvp">MVP</a>
                 <a href="#metrics">Метрики</a>
+                <a href="#cjm">CJM</a>
+                <a href="#contact">Команда</a>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn-auth" id="loginBtn">Вход</button>
+                <button class="btn-auth btn-primary" id="registerBtn">Регистрация</button>
             </div>
         </div>
     </nav>
+
+    <!-- Счётчик пользователей -->
+    <div class="user-counter">
+        <div class="container">
+            <div class="counter-content">
+                <span class="counter-icon">👥</span>
+                <span class="counter-text">Уже <strong id="userCount">1247</strong> IT-специалистов в сообществе</span>
+                <span class="counter-trend">↑ +23% за месяц</span>
+            </div>
+        </div>
+    </div>
 
     <main>
         <!-- Герой -->
@@ -30,8 +57,11 @@
                 <div style="max-width: 800px;">
                     <span class="badge">AI‑рекрутинг нового поколения</span>
                     <h1 style="font-size: 3rem; font-weight: 800; margin: 24px 0 16px;">Найм IT-команд <br>за 7 дней</h1>
-                    <p style="font-size: 1.2rem; color: #374151; margin-bottom: 32px;">Автоматическая оценка hard skills + culture fit. Сокращаем время закрытия вакансии с 30 до 7 дней.</p>
-                    <a href="#demo" class="btn">🎯 Попробовать свайп</a>
+                    <p style="font-size: 1.2rem; color: var(--text-secondary, #374151); margin-bottom: 32px;">Автоматическая оценка hard skills + culture fit. Сокращаем время закрытия вакансии с 30 до 7 дней.</p>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                        <a href="#demo" class="btn">🎯 Попробовать свайп</a>
+                        <button class="btn btn-outline" id="openResumeBtn">📝 Заполнить анкету</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -41,31 +71,67 @@
             <div class="container">
                 <h2 class="section-title">Актуальность</h2>
                 <div class="grid-2">
-                    <div class="card"><h3>📉 Дефицит кадров + шум</h3><p>В IT-сфере до 80% откликов — нерелевантны.</p></div>
-                    <div class="card"><h3>⚡ Цифровизация HR</h3><p>Рынок HR-Tech растёт на 20–25% в год.</p></div>
-                    <div class="card"><h3>🧩 Культурная совместимость</h3><p>40% новичков уходят в первый год из‑за несовместимости.</p></div>
+                    <div class="card"><h3>📉 Дефицит кадров + шум</h3><p>В IT-сфере до 80% откликов — нерелевантны. Ручной скрининг съедает до 30 часов в неделю у тимлидов.</p></div>
+                    <div class="card"><h3>⚡ Цифровизация HR</h3><p>Рынок HR-Tech растёт на 20–25% в год. Компании ищут AI-инструменты для автоматизации подбора.</p></div>
+                    <div class="card"><h3>🧩 Культурная совместимость</h3><p>40% новичков уходят в первый год из‑за несовместимости с командой. Мы решаем это с помощью AI-прогноза.</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- Конкуренты -->
+        <!-- Анализ конкурентов -->
         <section id="market">
             <div class="container">
                 <h2 class="section-title">Анализ рынка</h2>
                 <div class="competitor-grid">
                     <div class="competitor-item"><strong>GitWork</strong><br>Фокус на код, слабая оценка культуры</div>
-                    <div class="competitor-item"><strong>Хабр Карьера</strong><br>База резюме, нет AI-сортировки</div>
-                    <div class="competitor-item"><strong>Авито Работа</strong><br>Упрощённо, без тех. инструментов</div>
+                    <div class="competitor-item"><strong>Хабр Карьера</strong><br>База резюме, нет AI-сортировки, высокий шум</div>
+                    <div class="competitor-item"><strong>Авито Работа</strong><br>Упрощённо, без технических инструментов</div>
                     <div class="competitor-item" style="background:#2563eb10;"><strong>🔮 Хекслет‑match</strong><br>AI + culture fit + прогноз удержания</div>
+                </div>
+                <p style="margin-top: 32px;"><strong>Инновационность:</strong> Первая в РФ платформа, оценивающая психологическую совместимость и дающая прогноз retention.</p>
+            </div>
+        </section>
+
+        <!-- Ёмкость рынка -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">Ёмкость рынка</h2>
+                <div class="card" style="background: var(--bg-secondary, #eef2ff);">
+                    <p style="font-size: 1.2rem;">«Мы работаем над созданием <strong>нового для рынка продукта – Хекслет-match</strong>. Потенциальный объём рынка (по России) составляет <strong>~60 000 платежеспособных команд</strong>.</p>
+                    <p style="margin-top: 16px;">📊 TAM ≈ <strong>3,24 млн руб./год</strong> (при среднем чеке 3600₽/год и проникновении 1,5%).</p>
                 </div>
             </div>
         </section>
 
-        <!-- Демо свайп карточки -->
-        <section id="demo" style="background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);">
+        <!-- Ценностное предложение -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">Ценностное предложение</h2>
+                <div class="value-prop">
+                    <p style="font-size: 1.2rem; font-weight: 500;">«Наш продукт создан для <strong>CTO, основателей стартапов и IT-рекрутеров</strong>, которые устали от ручного отбора.</p>
+                    <p style="margin-top: 20px;">Хекслет-match — AI-платформа, сокращающая время закрытия вакансии с 30 до 7 дней и снижающая затраты на найм до 40%.»</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Потребности (JTBD) -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">Какие потребности закрывает</h2>
+                <div class="grid-2">
+                    <div class="card">🧑‍💻 <strong>«Когда я CTO и тону в откликах»</strong> → AI отсеивает нерелевантных, экономит 80% времени.</div>
+                    <div class="card">🚀 <strong>«Когда основатель стартапа ищу команду»</strong> → рекомендации кандидатов, совместимых с текущей культурой.</div>
+                    <div class="card">📝 <strong>«Когда IT-рекрутер проверяю скиллы»</strong> → встроенные тесты и анализ GitHub.</div>
+                    <div class="card">📈 <strong>«Когда боюсь текучки»</strong> → прогноз вероятности, что человек проработает >1 года.</div>
+                </div>
+            </div>
+        </section>
+
+             <!-- Демо свайп карточки -->
+        <section id="demo">
             <div class="container">
                 <h2 class="section-title" style="text-align: center; border-left: none;">🎴 Попробуйте сами</h2>
-                <p style="text-align: center; margin-bottom: 40px;">Свайпайте вправо ❤️ или влево ❌</p>
+                <p class="demo-subtitle">Свайпайте вправо ❤️ или влево ❌ — так работает наш AI-подбор</p>
                 <div class="swipe-container">
                     <div class="cards-stack" id="cardsStack"></div>
                     <div class="swipe-buttons">
@@ -82,34 +148,23 @@
             </div>
         </section>
 
-        <!-- Ценностное предложение -->
-        <section>
-            <div class="container">
-                <h2 class="section-title">Ценностное предложение</h2>
-                <div class="value-prop">
-                    <p>«Наш продукт создан для <strong>CTO, основателей стартапов и IT-рекрутеров</strong>, которые устали от ручного отбора.</p>
-                    <p>Хекслет-match — AI-платформа, сокращающая время закрытия вакансии с 30 до 7 дней.»</p>
-                </div>
-            </div>
-        </section>
-
         <!-- MVP -->
         <section id="mvp">
             <div class="container">
                 <h2 class="section-title">MVP (прототип)</h2>
                 <div class="grid-2">
                     <div class="card">
-                        <h3>⚙️ Функции MVP</h3>
+                        <h3>⚙️ Функции MVP (2-3 месяца)</h3>
                         <ul class="mvp-list">
-                            <li>Регистрация через GitHub</li>
-                            <li>Профиль команды (стек, культура)</li>
-                            <li>Карточки кандидатов «Tinder‑свайп»</li>
-                            <li>Встроенное тестовое задание</li>
+                            <li>Регистрация через GitHub / email</li>
+                            <li>Профиль команды (стек, культура — 5 чекбоксов)</li>
+                            <li>Карточки кандидатов «Tinder‑свайп» с % совместимости</li>
+                            <li>Встроенное автоматическое тестовое задание</li>
                             <li>Чат после взаимного лайка</li>
                         </ul>
                     </div>
                     <div class="card">
-                        <h3>📱 Пример карточки</h3>
+                        <h3>📱 Визуализация интерфейса</h3>
                         <div style="background: #0f172a; border-radius: 24px; padding: 20px; color: white; text-align: center;">
                             <div style="background: #1e293b; border-radius: 20px; padding: 16px;">
                                 <span>🧑‍💻 Анна, Python‑разработчик</span>
@@ -124,19 +179,75 @@
             </div>
         </section>
 
-        <!-- Метрики -->
+        <!-- PoC результаты -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">Результаты PoC</h2>
+                <div class="card">
+                    <p><strong>Цель:</strong> проверить готовность CTO платить за culture fit оценку.</p>
+                    <p><strong>Метод:</strong> ручной «Wizard of Oz» — 15 CTO получили отчёты по кандидатам.</p>
+                    <div class="metric-row" style="margin-top: 20px;">
+                        <div class="metric-card">📬 Отклик<br><span class="metric-number">80%</span></div>
+                        <div class="metric-card">💰 Готовность платить<br><span class="metric-number">50%</span></div>
+                        <div class="metric-card">💡 Инсайты<br><span class="metric-number">+3</span></div>
+                    </div>
+                    <p><strong>Вывод:</strong> гипотеза подтверждена — спрос на culture fit есть.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Метрики успеха -->
         <section id="metrics">
             <div class="container">
                 <h2 class="section-title">Метрики успеха</h2>
                 <div class="card" style="text-align: center;">
                     <span class="badge">⭐ North Star Metric</span>
                     <h3 style="font-size: 2rem;">Количество успешных наймов через платформу за месяц</h3>
+                    <p>Отражает главную ценность: закрытая вакансия → счастливый CTO → монетизация.</p>
                 </div>
                 <div class="metric-row">
                     <div class="metric-card">⏱️ Time‑to‑hire<br><span class="metric-number">30→7 дней</span></div>
                     <div class="metric-card">📊 Прохождение ИС<br><span class="metric-number">+25%</span></div>
+                    <div class="metric-card">🔄 Взаимные лайки<br><span class="metric-number">+40%</span></div>
                     <div class="metric-card">💎 LTV/CAC<br><span class="metric-number">3.1</span></div>
                 </div>
+            </div>
+        </section>
+
+        <!-- A/B тестирование -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">A/B‑тестирование</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>📌 Объект</h3>
+                        <p>Карточка кандидата для нанимателя</p>
+                        <h3 style="margin-top: 20px;">🎯 Гипотеза</h3>
+                        <p>Добавление прогноза culture fit увеличивает конверсию во взаимный лайк на ≥5%.</p>
+                    </div>
+                    <div class="card">
+                        <h3>📊 Метрики</h3>
+                        <p>Основная: конверсия во взаимный лайк.</p>
+                        <h3>⏱️ Период</h3>
+                        <p>2 недели, 1500+ пользователей в группе.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Карта клиента CJM -->
+        <section id="cjm">
+            <div class="container">
+                <h2 class="section-title">Карта клиента (CJM)</h2>
+                <p><strong>Персона:</strong> Алексей, CTO, 34 года, ищет Senior Python‑разработчика.</p>
+                <div class="cjm-row">
+                    <div class="cjm-step"><strong>1. Осознание</strong><br>Читает Telegram → видит кейс</div>
+                    <div class="cjm-step"><strong>2. Регистрация</strong><br>GitHub вход, заполнение культуры</div>
+                    <div class="cjm-step"><strong>3. Свайпинг</strong><br>Карточки с % совместимости</div>
+                    <div class="cjm-step"><strong>4. Чат и оффер</strong><br>Взаимный лайк → собеседование</div>
+                    <div class="cjm-step"><strong>5. Пост‑найм</strong><br>Обратная связь через 3 месяца</div>
+                </div>
+                <p><strong>Главный инсайт:</strong> критически важна прозрачность AI‑оценки.</p>
             </div>
         </section>
 
@@ -145,23 +256,18 @@
             <div class="container">
                 <h2 class="section-title">Вывод</h2>
                 <div class="card">
-                    <p><strong>✅ Продукт целесообразно выводить на рынок.</strong> Подтверждённый спрос (50% готовности платить), уникальное УТП, устойчивая юнит-экономика.</p>
+                    <p><strong>✅ Продукт Хекслет-match целесообразно выводить на рынок.</strong></p>
+                    <ul class="mvp-list" style="margin-top: 20px;">
+                        <li><strong>Подтверждённый спрос:</strong> 50% готовности платить по результатам PoC.</li>
+                        <li><strong>Уникальное УТП:</strong> culture fit + прогноз retention.</li>
+                        <li><strong>Юнит-экономика устойчива:</strong> LTV/CAC = 3,1.</li>
+                        <li><strong>Рынок растущий</strong> (HR‑Tech +20% годовых).</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Контакты -->
-        <section id="contact" style="border-bottom: none;">
-            <div class="container" style="text-align: center;">
-                <div class="card" style="max-width: 500px; margin: 0 auto;">
-                    <h3>Готовы ускорить найм?</h3>
-                    <input type="email" id="demoEmail" placeholder="Ваш email" style="padding: 12px; border-radius: 40px; border: 1px solid #ccc; width: 100%; margin: 16px 0;">
-                    <button class="btn" id="submitDemo">Записаться</button>
-                    <p id="demoMsg" style="margin-top: 12px;"></p>
-                </div>
-            </div>
-        </section>
-                <!-- Контакты команды -->
+        <!-- Контакты команды -->
         <section id="contact" style="border-bottom: none;">
             <div class="container">
                 <h2 class="section-title" style="text-align: center; border-left: none;">👥 Наша команда</h2>
@@ -171,25 +277,19 @@
                         <div class="team-avatar">👨‍💻</div>
                         <h3>Асташов Иван</h3>
                         <p>Team Lead / Fullstack</p>
-                        <a href="https://t.me/N1sadod" target="_blank" class="team-tg">
-                            <span class="tg-icon">📱</span> @N1sadod
-                        </a>
+                        <a href="https://t.me/N1sadod" target="_blank" class="team-tg">📱 @N1sadod</a>
                     </div>
                     <div class="team-card">
                         <div class="team-avatar">⚙️</div>
                         <h3>Сизых Егор</h3>
                         <p>Backend / AI-интеграция</p>
-                        <a href="https://t.me/egor4ik179" target="_blank" class="team-tg">
-                            <span class="tg-icon">📱</span> @egor4ik179
-                        </a>
+                        <a href="https://t.me/egor4ik179" target="_blank" class="team-tg">📱 @egor4ik179</a>
                     </div>
                     <div class="team-card">
                         <div class="team-avatar">🎨</div>
                         <h3>Артеменко Родион</h3>
                         <p>Frontend / UI/UX</p>
-                        <a href="https://t.me/NoGl0ry" target="_blank" class="team-tg">
-                            <span class="tg-icon">📱</span> @NoGl0ry
-                        </a>
+                        <a href="https://t.me/NoGl0ry" target="_blank" class="team-tg">📱 @NoGl0ry</a>
                     </div>
                 </div>
                 <div class="contact-email-block">
@@ -202,9 +302,68 @@
 
     <footer class="footer">
         <div class="container">
-            <p>© 2025 Хекслет‑match — AI-платформа для IT-команд</p>
+            <p>© 2025 Хекслет‑match — AI-платформа для IT-команд. Проект разработан в рамках практической работы.</p>
         </div>
     </footer>
+
+    <!-- Модальные окна (анкета, вход, регистрация) -->
+    <div class="modal" id="resumeModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>📝 Анкета кандидата</h2>
+            <p class="modal-subtitle">Заполните форму, и AI подберёт для вас идеальную команду</p>
+            <form id="resumeForm">
+                <div class="form-group"><label>ФИО *</label><input type="text" id="fullname" required></div>
+                <div class="form-group"><label>Telegram *</label><input type="text" id="telegram" required placeholder="@username"></div>
+                <div class="form-group"><label>GitHub</label><input type="url" id="github" placeholder="https://github.com/username"></div>
+                <div class="form-group"><label>Стек технологий *</label>
+                    <select id="stack" required>
+                        <option value="">Выберите...</option>
+                        <option>Python / Django</option><option>JavaScript / React</option>
+                        <option>Java / Spring</option><option>Go / Kubernetes</option>
+                        <option>Ruby on Rails</option><option>C++ / Unreal</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Опыт работы</label>
+                    <select id="experience">
+                        <option>Нет опыта</option><option>1-3 года</option><option>3-5 лет</option><option>5+ лет</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>О себе</label><textarea id="about" rows="3"></textarea></div>
+                <button type="submit" class="btn" style="width:100%">🚀 Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>🔐 Вход</h2>
+            <form id="loginForm">
+                <div class="form-group"><label>Email или Telegram</label><input type="text" id="loginEmail" required></div>
+                <div class="form-group"><label>Пароль</label><input type="password" id="loginPassword" required></div>
+                <button type="submit" class="btn" style="width:100%">Войти</button>
+            </form>
+            <p class="modal-footer-text">Нет аккаунта? <a href="#" id="switchToRegister">Зарегистрируйтесь</a></p>
+        </div>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>📝 Регистрация</h2>
+            <form id="registerForm">
+                <div class="form-group"><label>Имя</label><input type="text" id="regName" required></div>
+                <div class="form-group"><label>Email</label><input type="email" id="regEmail" required></div>
+                <div class="form-group"><label>Telegram</label><input type="text" id="regTelegram" required></div>
+                <div class="form-group"><label>Пароль</label><input type="password" id="regPassword" required></div>
+                <button type="submit" class="btn" style="width:100%">Зарегистрироваться</button>
+            </form>
+            <p class="modal-footer-text">Уже есть аккаунт? <a href="#" id="switchToLogin">Войдите</a></p>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
 
     <script type="module" src="js/main.js"></script>
 </body>
